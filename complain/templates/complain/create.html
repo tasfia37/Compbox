@@ -1,0 +1,54 @@
+{%extends 'base.html'%}
+
+{%block content%}
+ {% if error %}
+<div class="row justify-content-center mt-3 ">
+    <div class="col-md-5 alert alert-danger text-center"  style="font-size:25px">
+        {{error}}
+    </div>
+</div>
+ {% endif %}
+
+<div class="row justify-content-center mt-4 ">
+    <div class="col-md-5 alert alert-primary" >
+
+<h2 style="margin-left:21%;margin-bottom:5%;font-variant: small-caps;">Make your complain</h2>
+
+<form style="margin-left:10%;"  method="POST" action="{%url 'create'%}" enctype="multipart/form-data">
+{%csrf_token%}
+ <div style="margin-left:10%">
+    1. Address of the place where the problem is:
+    <br/><br>
+    <input type="text" name="address"/>
+    <br/><br>
+    2. Description
+    <br/><br>
+     <textarea cols="40" rows="5" name="description"></textarea>
+
+    <br><br>
+    3. Ministry category (see ministry section if needed):
+    <br> <br>
+    <label for="ministry">Choose a ministry:</label>
+    <select name="ministry" id="ministry">
+        <option disabled selected value> -- select an option -- </option>
+      <option value="Water Resource">Water resource</option>
+      <option value="Roads and Highways">Roads and Highways</option>
+      <option value="Electricity">Electricity</option>
+      <option value="Environment and Pollution">Environment and Pollution</option>
+    </select>
+
+    <br><br>
+    4. Related images:
+    <br/><br>
+    <input type="file" name="image"/>
+    <br/><br>
+    <br/>
+ </div>
+   <button style="margin-left: 30%; font-size:20px" type="submit">Submit</button>
+</form>
+
+
+    </div>
+</div>
+
+{% endblock %}

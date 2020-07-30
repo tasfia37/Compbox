@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+
+{% for complain in complains.all %}
+{% if user.username == complain.user.username %}
+
+<div class="row justify-content-center pt-3 alert alert-info }" style="margin-top:5%;margin-left:10%;margin-right:10%">
+    <div class="col-md-2" onclick="window.location='{% url 'detail' complain.id %}';" style="cursor: pointer;">
+        <img class="img-fluid" style="width:70% " src="{{complain.image.url}}">
+    </div>
+    <div class="col-6" onclick="window.location='{% url 'detail' complain.id %}';" style="cursor: pointer;">
+        <h3>{{ complain.ministry}}</h3>
+        <p>{{complain.summary}}</p>
+        <p>Address: {{complain.address}}</p>
+        {% if complain.approve%}<p class="alert alert-warning"> Approved on: {{complain.dateApprove}} </p>{% endif %}
+    </div>
+</div>
+
+{% endif %}
+
+
+{% endfor %}
+
+
+{% endblock %}
