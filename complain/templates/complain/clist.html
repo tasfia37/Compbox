@@ -3,25 +3,43 @@
 {%block content%}
 
 
-{% for complain in complains.all %}
-{% if user.username == complain.user.username %}
 
-<div class="row justify-content-center pt-3 alert alert-info }" style="margin-top:5%;margin-left:10%;margin-right:10%">
-    <div class="col-md-2" onclick="window.location='{% url 'detail' complain.id %}';" style="cursor: pointer;">
-        <img class="img-fluid" style="width:70% " src="{{complain.image.url}}">
+
+
+
+<div style="margin-top: 50px;position:fixed;">
+    <br>
+    <br>
+<button id="lastweek" onclick="window.location='{% url 'lastweek' %}';" style="margin-left:12px;width:100px;background-color: black;color:white;border-radius: 10px;margin-right:30px;"><b>Last Week</b></b></button>
+  <br> <br>  <button id="last15days" onclick="window.location='{% url 'last15days' %}';" style="margin-left:12px;width:100px;background-color: black;color:white;border-radius: 10px;margin-right:30px;"><b>Last 15 days</b></button>
+   <br><br>  <button id="lastmonth" onclick="window.location='{% url 'lastmonth' %}';" style="margin-left:12px;width:100px;background-color: black;color:white;border-radius: 10px;margin-right:30px;"><b>Last Month</b></button>
     </div>
-    <div class="col-6" onclick="window.location='{% url 'detail' complain.id %}';" style="cursor: pointer;">
-        <h3>{{ complain.ministry}}</h3>
-        <p>{{complain.summary}}</p>
-        <p>Address: {{complain.address}}</p>
-        {% if complain.approve%}<p class="alert alert-warning"> Approved on: {{complain.dateApprove}} </p>{% endif %}
+ {% for dis in results %}
+    <br>
+    <br>
+<h1 style="text-align: center;"><b>{{ dis.0 }}</b></h1>
+    <br>
+
+
+
+
+{% for comp in complains %}
+{% if user.username == comp.6 %}
+
+   {% if dis.0 == comp.0 %}
+<div class="row justify-content-center pt-3 alert alert-info" style="margin-top:5%;margin-left:10%;margin-right:10%">
+    <div class="col-md-2" onclick="window.location='{% url 'detail' comp.1 %}';" style="cursor: pointer;">
+        <img class="img-fluid" style="width:70% " src="{{comp.5.url}}">
+    </div>
+    <div class="col-6" onclick="window.location='{% url 'detail' comp.1 %}';" style="cursor: pointer;">
+
+        <h3>{{ comp.4}}</h3>
+        <p>{{comp.3}}</p>
+        <p>Address: {{comp.0}}</p>
+         {% if comp.7%}<p class="alert alert-warning"> Approved on: {{comp.2}} </p>{% endif %}
     </div>
 </div>
-
 {% endif %}
-
-
+{% endif %}
 {% endfor %}
-
-
-{% endblock %}
+{% endfor %}
