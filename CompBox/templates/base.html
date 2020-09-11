@@ -10,27 +10,37 @@
 
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 
-    <div id="a" style="z-index:1;">
+   <div id="a" style="z-index:1;display: inline-flex;">
 
-        <img style=" float:left ;width: 60px;height: 115px;"
+        <img style=" float:left ;width: 50px;height: 80px;margin-top: 10px;"
             src="{% static 'pst2.png' %}">
-        <p id="b">CompBox</p>
-        <div id="c">
-            <a style="color:white;font-size:20px" href="{%url 'home'%}">Home</a>
-            <a style="color:white;font-size:20px" href="{%url 'aboutus'%}">About Us</a>
-            <a style="color:white;font-size:20px" href="{%url 'ministrypage'%}">Ministries</a>
+
+        <div id="c" style="margin-left: 15px;margin-top: 28px;">
+            <a class="navbar-brand" style="font-size: 30px;color:red;">CompBox</a>
+            <a class="navbar-brand" style="color: white;" href="{%url 'home'%}">Home</a>
+            <a class="navbar-brand" style="color: white;" href="{%url 'aboutus'%}">About Us</a>
+            <a class="navbar-brand" style="color: white;" href="{%url 'ministrypage'%}">Ministries</a>
+
 
             {%if user.is_authenticated%}
+             <a class="navbar-brand" style="color: white;" href="{%url 'create'%}">Post Complain</a>
+            <a href="{%url 'clist'%}" class="navbar-brand" style="color: white;">Complain List</a> -->
+         <!-- <a href="{%url 'create'%}" style="display:inline-block;margin-left:10px; font-size:25px;color:palevioletred; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">PostComplain</a> -->
+           <div class="navbar-brand" style="color: white;margin-left:60px">Hi, {{user.username}} </div>
+            <a class="navbar-brand" style="color: white;" href="javascript:{document.getElementById('logout').submit()}"><span class="glyphicon glyphicon-user"></span> Logout</a>
 
-            <a href="{%url 'clist'%}" style="display:inline-block; font-size:20px;color:white; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Complain List</a>
-            <a href="{%url 'create'%}" style="display:inline-block;margin-left:10px; font-size:25px;color:palevioletred; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">PostComplain</a>
-            <a style="font-size: 20px;margin-left:10px;color:white" href="javascript:{document.getElementById('logout').submit()}">  Logout</a>
-            <div style="display:inline-block; font-size:20px;color:#0ebbf0; font-family: Cambria">Logged in as {{user.first_name}} </div>
 
 
          <form id="logout" method="POST" action="{% url 'logout' %}" style="margin-left:2%">
@@ -40,12 +50,52 @@
 
              {%else%}
 
-            <a href="{%url 'signup'%}" style="margin-left:50px;font-size: 30px;">Sign up</a>
-            <a href="{%url 'login'%}"style="font-size: 30px;">Login</a>
+            <a href="{%url 'signup'%}" class="navbar-brand" style="color: white;margin-left:300px;">Sign up</a>
+            <a href="{%url 'login'%}" class="navbar-brand" style="color: white;"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+            <a href="{%url 'mlogin'%}" class="navbar-brand" style="color: white;"><span class="glyphicon glyphicon-log-in"></span> MLogin</a>
                   {%endif%}
         </div>
 
         </div>
 
+
+<!--
+
+<div style="display: inline-flex;">
+
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid" > -->
+   <!-- <div class="navbar-header">
+      <a class="navbar-brand" href="{%url 'home'%}">Home</a>
+    </div> --> <!--
+    <ul class="nav navbar-nav" style="display: inline-flex;">
+      <li class="active"><a href="{%url 'home'%}">Home</a></li>
+      <li><a href="{%url 'aboutus'%}">About Us</a></li>
+      <li><a href="{%url 'ministrypage'%}">Post Complain</a></li>
+        <li><a href="{%url 'clist'%}">Complain List</a></li>
+         </ul>
+        {%if user.is_authenticated%}
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{%url 'ministrypage'%}">Post Complain</a></li>
+
+
+      <li><a href="javascript:{document.getElementById('logout').submit()}"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>
+      <div style="display:inline-block; font-size:20px;color:#0ebbf0; font-family: Cambria">Hi, {{user.username}} </div>
+           <form id="logout" method="POST" action="{% url 'logout' %}" style="margin-left:2%">
+            {%csrf_token%}
+        <input type="hidden">
+          </form>
+           {%else%}
+          <ul class="nav navbar-nav navbar-right">
+        <li><a href="{%url 'signup'%}"><span class="glyphicon glyphicon-log-in"></span> Sign Up</a></li>
+        <li><a href="{%url 'login'%}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="{%url 'mlogin'%}"><span class="glyphicon glyphicon-log-in"></span> MLogin</a></li>
+           </ul>
+              {%endif%}
+
+  </div>
+</nav>
+</div>
+-->
  {%block content%}
 {%endblock%}
