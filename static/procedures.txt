@@ -1,0 +1,108 @@
+p1:getaddressSP
+
+BEGIN
+select address AS address from complain_add GROUP by address;
+END
+
+
+
+p2:getaddressbyid
+
+BEGIN
+DECLARE
+x int;
+select id into x from auth_user where username=user_idd;
+select address as address from complain_complain where user_id=x group by address;
+END
+
+
+
+p3:getaddressbyidlast15days
+
+BEGIN
+DECLARE
+x int;
+select id into x from auth_user where username=user_idd;
+select address as address from complain_complain where user_id=x and pub_date >= (curdate() - INTERVAL 15 day) and CURRENT_DATE group by address;
+END
+
+
+
+
+p4:getaddressbyidlast7days
+
+BEGIN
+DECLARE
+x int;
+select id into x from auth_user where username=user_idd;
+select address as address from complain_complain where user_id=x and pub_date >= (curdate() - INTERVAL 7 day) and CURRENT_DATE group by address;
+END
+
+
+
+
+p5:getaddressbyidlastmonth
+
+BEGIN
+DECLARE
+x int;
+select id into x from auth_user where username=user_idd;
+select address as address from complain_complain where user_id=x and pub_date >= (curdate() - INTERVAL 30 day) and CURRENT_DATE group by address;
+END
+
+
+
+
+p6:getaddressbyidministries
+
+BEGIN
+DECLARE
+x varchar(30);
+select first_name into x from auth_user where first_name=user_idd;
+SELECT address as address from complain_complain where ministry=x GROUP
+
+
+
+
+p7:getministriesSP
+
+BEGIN
+select * from complain_mins;
+END
+
+
+
+
+p8:last15days
+
+BEGIN
+select address,complain_complain.id as ids,pub_date,description,ministry,image,username as un,approve from complain_complain, auth_user where complain_complain.user_id = auth_user.id and pub_date >= (curdate() - INTERVAL 15 day) and CURRENT_DATE order by pub_date;
+END
+
+
+
+
+p9:last7days
+
+BEGIN
+select address,complain_complain.id as ids,pub_date,description,ministry,image,username as un,approve from complain_complain, auth_user where complain_complain.user_id = auth_user.id and pub_date >= (curdate() - INTERVAL 7 day) and CURRENT_DATE order by pub_date;
+END
+
+
+
+
+p10:lastmonth
+
+BEGIN
+select address,complain_complain.id as ids,pub_date,description,ministry,image,username as un,approve from complain_complain, auth_user where complain_complain.user_id = auth_user.id and pub_date >= (curdate() - INTERVAL 30 day) and CURRENT_DATE order by pub_date;
+END
+
+
+
+
+
+p11:lastweekcomplains
+
+BEGIN
+select address,complain_complain.id as ids,pub_date,description,ministry,image,username as un,approve from complain_complain, auth_user where complain_complain.user_id = auth_user.id order by pub_date;
+END
