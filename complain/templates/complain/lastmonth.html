@@ -1,0 +1,62 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+
+ {% for dis in results %}
+    <br>
+    <br>
+<h2 style="text-align: center;">{{ dis.0 }}</h2>
+    <br>
+
+
+
+
+{% for comp in complains %}
+{% if user.username == comp.6 %}
+
+   {% if dis.0 == comp.0 %}
+<div class="row justify-content-center pt-3 alert alert-info" style="margin-top:5%;margin-left:10%;margin-right:10%">
+    <div class="col-md-2" onclick="window.location='{% url 'detail' comp.1 %}';" style="cursor: pointer;">
+        <img class="img-fluid" style="width:70% " src="{{comp.5}}">
+    </div>
+    <div class="col-6" onclick="window.location='{% url 'detail' comp.1 %}';" style="cursor: pointer;">
+
+        <h3>{{ comp.4}}</h3>
+        <p>{{comp.3}}</p>
+        <p>Address: {{comp.0}}</p>
+        {% if comp.7%}<p class="alert alert-warning"> Approved on: {{comp.2}} </p>{% endif %}
+    </div>
+</div>
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+
+{% for complain in complains.all %}
+{% if user.username == complains.1.6 %}
+
+
+
+<div class="row justify-content-center pt-3 alert alert-info" style="margin-top:5%;margin-left:10%;margin-right:10%">
+    <div class="col-md-2" onclick="window.location='{% url 'detail' complain.id %}';" style="cursor: pointer;">
+        <img class="img-fluid" style="width:70% " src="{{complain.image.url}}">
+    </div>
+    <div class="col-6" onclick="window.location='{% url 'detail' complain.id %}';" style="cursor: pointer;">
+
+        <h3>{{ complain.ministry}}</h3>
+        <p>{{complain.description}}</p>
+        <p>Address: {{complain.address}}</p>
+    </div>
+</div>
+
+{% endif %}
+
+{% endfor %}
+
+
+
+
+
+{% endblock %}
