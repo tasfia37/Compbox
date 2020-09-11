@@ -20,13 +20,14 @@
         <img style=" float:left ;width: 60px;height: 115px;"
             src="{% static 'pst2.png' %}">
         <p id="b">CompBox</p>
-        <div id="c" style="margin-left:60%">
-            <a style="color:white;font-size:20px" href="{%url 'mhome'%}">Home</a>
+
+        <div id="c" style="margin-left: 45px;margin-top: 28px;">
+            <a style="color:white;font-size:20px" href="{%url 'mhome'%}">All</a>
 
             {%if user.is_authenticated%}
-            <a style="color:white;font-size:20px" href="{%url 'approvedlist'%}">ApproveList</a>
+            <a style="color:white;font-size:20px" href="{%url 'approvedlist'%}">Approved</a>
 <!--            <a href="{%url 'clist'%}" style="display:inline-block; font-size:20px;color:white; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Complain List</a>-->
-            <a style="font-size: 20px;margin-left:10px;color:white" href="javascript:{document.getElementById('logout').submit()}"> Logout</a>
+            <a style="font-size: 20px;margin-left:600px;color:white" href="javascript:{document.getElementById('logout').submit()}"><span class="glyphicon glyphicon-user"></span> Logout</a>
 
          <form id="logout" method="POST" action="{% url 'logout' %}">
             {% csrf_token %}
@@ -61,6 +62,7 @@
         <h1>{{ complain.user.first_name}}</h1>
         <p>{{complain.summary}}</p>
         <p>NID {{complain.user.username}}</p>
+        {% if complain.approve%}<p class="alert alert-warning"> Approved on: {{complain.pub_date}} </p>{% endif %}
     </div>
 </div>
 
