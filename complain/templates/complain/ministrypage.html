@@ -3,6 +3,25 @@
 {%block content%}
 {%load static%}
 
-<h3>ministry content page</h3>
+<h1 style="text-align:center;"><b>List of Ministries</b></h1>
+<br>
+<br>
+
+
+
+
+
+
+{% for complain in results.all %}
+
+    <p style="color:white;font-size: 30px;background-color:black;text-align:center;width:700px;margin-left:300px;border-radius:10px;">
+        {{ complain.ministry }}
+
+</p>
+
+{% endfor %}
+
+
+
 
 {% endblock %}

@@ -2,19 +2,22 @@
 
 {%block content%}
 <div >
-    {% if complain.approve == False %}
-    <form method="post" action="{% url 'deletecomplain' complain.id %}" >
-        {%csrf_token%}
-        <button type="submit" style="margin-top:2%;margin-left:80%;width:7%" class="btn btn-danger">Delete</button>
-    </form>
-    {% endif %}
-
-<h3 style="margin-top:2%;"> Area- {{complain.address}}</h3>
+    {% if complain.approve == True %}
+<h5 class="alert alert-dark">Approved on : {{complain.dateApprove}}</h5>
+{% endif %}
+<h3 style="margin-top:5%;"> Area- {{complain.address}}</h3>
 <h3 style="margin-top:2%;"> Ministry- {{complain.ministry}}</h3>
 
 <img src="{{complain.image.url}}" style="width:34%;" ><br>
-<h4 style="display:inline-block;"> Posted by - {{complain.user.first_name}}</h4>
+<h4 style="display:inline-block;"> Posted by - {{user.username}}</h4>
 <h4 class="alert alert-secondary"style="display:inline-block;margin-left:39%;">{{complain.pub_date_up}}</h4>
 <p style="font-size:20px">{{complain.description}}</p>
+
+    <form method="POST" action="{% url 'deletecomplain' complain.id %}">
+        {%csrf_token%}
+        <button type="submit" style="margin-top:2%;margin-left:80%;width:7%" class="btn btn-danger">
+            Delete
+        </button>
+    </form>
 </div>
 {% endblock %}

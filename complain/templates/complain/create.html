@@ -29,13 +29,26 @@
     3. Ministry category (see ministry section if needed):
     <br> <br>
     <label for="ministry">Choose a ministry:</label>
-    <select name="ministry" id="ministry">
-        <option disabled selected value> -- select an option -- </option>
-      <option value="Water Resource">Water resource</option>
-      <option value="Roads and Highways">Roads and Highways</option>
+
+
+
+
+        <select name="ministry" id="ministry">
+
+
+     <option disabled="true" selected>select</option>
+{% for complain in results.all %}
+    <option value={{ complain.ministry }}>{{ complain.ministry }}</option>
+    <!--  <option value="Roads and Highways">Roads and Highways</option>
       <option value="Electricity">Electricity</option>
       <option value="Environment and Pollution">Environment and Pollution</option>
+        <option value="health">health</option> -->
+
+{% endfor %}
+
     </select>
+
+
 
     <br><br>
     4. Related images:

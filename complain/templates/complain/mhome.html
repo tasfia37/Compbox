@@ -19,14 +19,15 @@
 
         <img style=" float:left ;width: 60px;height: 115px;"
             src="{% static 'pst2.png' %}">
-        <p id="b">CompBox</p>
-        <div id="c" style="margin-left:60%">
-            <a style="color:white;font-size:20px" href="{%url 'mhome'%}">Home</a>
+         <a class="navbar-brand" style="font-size: 30px;color:red;">CompBox</a>
+
+        <div id="c" style="margin-left: 45px;margin-top: 28px;">
+            <a style="color:white;font-size:20px" href="{%url 'mhome'%}">All</a>
 
             {%if user.is_authenticated%}
-            <a style="color:white;font-size:20px" href="{%url 'approvedlist'%}">ApproveList</a>
+            <a style="color:white;font-size:20px" href="{%url 'approvedlist'%}">Approved</a>
 <!--            <a href="{%url 'clist'%}" style="display:inline-block; font-size:20px;color:white; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Complain List</a>-->
-            <a style="font-size: 20px;margin-left:10px;color:white" href="javascript:{document.getElementById('logout').submit()}"> Logout</a>
+            <a style="font-size: 20px;margin-left:600px;color:white" href="javascript:{document.getElementById('logout').submit()}"> <span class="glyphicon glyphicon-user"></span>Logout</a>
 
          <form id="logout" method="POST" action="{% url 'logout' %}">
             {% csrf_token %}
@@ -41,20 +42,46 @@
         </div>
     <div class="row justify-content-center mt-3 ">
     <div class="col-md-5 alert alert-success text-center"  style="font-size:25px">
-        <h1 >{{user.first_name}}</h1>
+        <h1 >Ministry: {{user.first_name}}</h1>
     </div>
     </div>
 
      {%block content2%}
+<!--
+<div style="margin-top: 50px;position:fixed;">
+    <br>
+    <br>
+<button id="lastweek" onclick="window.location='{% url 'lastweek' %}';" style="margin-left:12px;width:100px;background-color: black;color:white;border-radius: 10px;margin-right:30px;"><b>Last Week</b></b></button>
+  <br> <br>  <button id="last15days" onclick="window.location='{% url 'last15days' %}';" style="margin-left:12px;width:100px;background-color: black;color:white;border-radius: 10px;margin-right:30px;"><b>Last 15 days</b></button>
+   <br><br>  <button id="lastmonth" onclick="window.location='{% url 'lastmonth' %}';" style="margin-left:12px;width:100px;background-color: black;color:white;border-radius: 10px;margin-right:30px;"><b>Last Month</b></button>
+    </div>
+-->
 
 
+
+
+
+
+
+ {% for dis in results %}
+    <br>
+    <br>
+<h2 style="text-align: center;">{{ dis.0 }}</h2>
+    <br>
 {% for complain in complains.all %}
-    {% if complain.ministry == user.first_name %}
+
+
+
+{% if complain.ministry == user.first_name %}
+      {% if dis.0 == complain.address %}
+
+
+
+
 
 <div class="row justify-content-center pt-3 alert alert-info" style="margin-top:5%;margin-left:10px;">
     <div class="col-md-2" onclick="window.location='{% url 'mdetail' complain.id %}';" style="cursor: pointer;">
-        <img class="img-fluid" style="width:8
-        0% "  src="{{complain.image.url}}">
+        <img class="img-fluid" style="width:80% "  src="{{complain.image.url}}">
     </div>
 
     <div class="col-6" onclick="window.location='{% url 'mdetail' complain.id %}';" style="cursor: pointer;">
@@ -64,9 +91,15 @@
     </div>
 </div>
 
-
+{% endif %}
 {% endif %}
 {% endfor %}
+{% endfor %}
+
+
+
+
+
 
 
 
