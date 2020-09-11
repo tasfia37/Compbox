@@ -23,3 +23,11 @@ class Complain(models.Model):
 
     def pub_date_up(self):
         return self.pub_date.strftime('%b %e %Y')
+
+
+class Mins(models.Model):
+      ministry = models.CharField(max_length=100)
+
+
+class Add(models.Model):
+    address = models.CharField(max_length=255)
