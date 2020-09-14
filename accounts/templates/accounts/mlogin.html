@@ -13,11 +13,14 @@
          {% endif %}
     <div>
         <div class="row justify-content-center mt-5 ">
-        <div class="col-md-5 alert alert-primary" >
+        <div class="col-md-5 alert alert-primary" style="background-color:white;">
        <form method="POST" action="{%url 'mlogin'%}">
               {% csrf_token %}
 
-        <h1 style="color: rgb(27, 2, 66); text-align: center;margin-bottom:10%;margin-top:5%">Ministry Login</h1>
+           <h1 style="color: rgb(27, 2, 66); text-align: center;margin-bottom:10%;margin-top:5%"><b>Ministry Login</b></h1>
+
+           <label for="ministrycode" style="font-size:20px">Ministry Code</label><br>
+        <input style="width: 95%;" type="text" id="ministrycode" name="ministrycode"><br><br><br>
 
         <label for="ministry" style="font-size:20px">Ministry</label><br>
         <input style="width: 95%;" type="text" id="ministry" name="ministry"><br><br><br>
@@ -25,7 +28,7 @@
 
            <label for="password" style="font-size:20px">Ministry Password</label><br>
            <input style="width: 95%;" type="password" id="password" name="password"><br><br>
-           <button style="margin-left: 35%; margin-top:5%;font-size:20px" type="submit">Submit</button><br><br>
+           <button style="border-radius:10px;margin-left: 35%; font-size:20px;background-color:darkgreen;color:white; type="submit">Submit</button><br><br>
 
         </form>
         </div>

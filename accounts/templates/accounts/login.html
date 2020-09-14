@@ -13,11 +13,11 @@
          {% endif %}
 
       <div class="row justify-content-center mt-4 ">
-        <div class="col-md-5 alert alert-primary" >
+        <div class="col-md-5 alert alert-primary" style="background-color:white;">
        <form  method="POST" action="{%url 'login'%}">
               {%csrf_token%}
 
-        <h1 style="color: rgb(27, 2, 66); text-align: center;margin-top:5%;margin-bottom:7%">Login</h1>
+           <h1 style="color: rgb(27, 2, 66); text-align: center;margin-top:5%;margin-bottom:7%"><b>Login</b></h1>
 
         <label for="username" style="font-size:20px">Username</label><br>
         <input style="width: 95%;" type="text" id="username" name="username"><br><br>
@@ -29,7 +29,7 @@
 
         <label for="password" style="font-size:20px">Password</label><br>
         <input style="width: 95%;" type="password" id="password" name="password"><br><br>
-           <button style="margin-left: 35%; font-size:20px" type="submit">Submit</button><br><br>
+           <button style="border-radius:10px;margin-left: 35%; font-size:20px;background-color:darkgreen;color:white;" type="submit">Submit</button><br><br>
            <a style="display:block;margin-left: 25%; font-size:20px" href="{% url 'mlogin' %}">Do you represent a ministry?</a>
 
 

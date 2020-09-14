@@ -6,23 +6,23 @@
      <div >
        <img style="float: left; width: 40%; height: 400px; margin-top: 10%;margin-left: 5%;" src="{%static 'company-policies.jpg' %}">
 
-       <form  id="f" method="POST" action="{%url 'signup'%}" style="background-color:#bee5ed">
+       <form  id="f" method="POST" action="{%url 'msignup'%}" style="background-color:#bee5ed">
               {%csrf_token%}
         {% if error %}
             <div class="alert alert-danger text-center"  style="font-size:20px ;margin-top:5px">
                 {{error}}
             </div>
         {% endif %}
-        <h1 style="color: rgb(27, 2, 66); text-align: center; margin-bottom:8%; margin-top:5%">Sign Up</h1>
+        <h1 style="color: rgb(27, 2, 66); text-align: center; margin-bottom:8%; margin-top:5%">Ministry signup</h1>
 
-        <label for="username" style="font-size:20px">Username</label><br>
+        <label for="username" style="font-size:20px">Set Ministry Code</label><br>
         <input style="width: 95%;" type="text" id="username" name="username"><br><br>
 
-        <label for="nid" style="font-size:20px">NID</label><br>
-        <input style="width: 95%;" type="text" id="nid" name="nid"><br><br>
+      <!--  <label for="nid" style="font-size:20px">NID</label><br>
+        <input style="width: 95%;" type="text" id="nid" name="nid"><br><br> -->
 
-        <label for="email" style="font-size:20px">Email</label><br>
-        <input style="width: 95%;" type="text" id="email" name="email"><br><br>
+        <label for="ministry" style="font-size:20px">Ministry</label><br>
+        <input style="width: 95%;" type="text" id="ministry" name="ministry"><br><br>
 
         <label for="pass" style="font-size:20px">Password</label><br>
         <input style="width: 95%;" type="password" id="pass" name="pass"><br><br>
@@ -31,7 +31,7 @@
         <input style="width: 95%;" type="password" id="cpass" name="cpass"><br><br><br>
 
         <button style="margin-left: 30%;font-size:20px" type="submit">Submit</button>
-             <a style="display:block;margin-left: 25%; font-size:20px" href="{% url 'msignup' %}">Do you represent a ministry?</a>
+
 
         </form>
     </div>
